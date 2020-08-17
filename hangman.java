@@ -10,6 +10,7 @@ import java.util.Scanner;
  */
 public class hangman 
 {
+    // creates board
     public static void createBoard(char[] board, String word)
     {
         for (int i = 0; i < word.length(); i++)
@@ -51,7 +52,6 @@ public class hangman
             printBoard(board);
             System.out.println();
         }
-        
         System.out.println("Congratulations! You win!");
     }
     
@@ -68,5 +68,4 @@ public class hangman
         printBoard(board); 
         guess(guessWord, board);   
     }
-    
 }
