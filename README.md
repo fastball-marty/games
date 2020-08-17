@@ -1,5 +1,5 @@
 # games
-collection of small games including
+collection of simple games including
 - Rock, Paper, Scissors
 - Snake
 - Hangman
