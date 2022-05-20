@@ -50,22 +50,39 @@ public class main {
 		System.out.println("Is your word a double or triple word? Enter '2' "
 				+ "for double and '3' for triple. Enter '0' for no.");
 		
-		Scanner myObj = new Scanner(System.in); // Create a Scanner object
+		Scanner myObj = new Scanner(System.in); // Creates a Scanner object
 		
-		int bonus = myObj.nextInt();
+		// checks for number input
+		while (!myObj.hasNextInt()) {
+			myObj.next();
+			System.out.println("Error. Enter a valid number.");
+		}
+		
+		int bonus = myObj.nextInt();			// stores double/triple word  bonus
+		
+		if (bonus != 2 && bonus != 3 && bonus != 0)
+			System.out.println("Invalid input. No bonus applied.\n");
 		
 		System.out.println("Did you use all seven tiles? Enter '1' for yes "
 				+ "and '0' for no.");
 		
-		int seven = myObj.nextInt();
+		// checks for number input
+		while (!myObj.hasNextInt()) {
+			myObj.next();
+			System.out.println("Error. Enter a valid number.");
+		}
+		
+		int seven = myObj.nextInt();			// stores all seven tiles bonus
+		
+		if (seven != 1 && seven != 0)
+			System.out.println("Invalid input. No bonus applied.\n");
 		
 		if (bonus == 2)
 			isDouble = true;					// double word bonus
 		if (bonus == 3)
 			isTriple = true;					// triple word bonus
-		
-		if (seven == 1)							// seven tiles bonus +50 pts
-			allSeven = true;
+		if (seven == 1)							
+			allSeven = true;					// seven tiles bonus +50 pts
 		
 		myObj.close();
 		
