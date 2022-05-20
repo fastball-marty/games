@@ -11,20 +11,15 @@
 import java.util.Scanner;
 
 public class main {
-
-	static boolean isDouble;				// double word bonus
-	static boolean isTriple;				// triple word bonus
-	static boolean sevenBonus;				// all seven tiles used bonus
 	
 	public static void main(String[] args) {
 		String myWord = collectWord();
-		int myScore = calculate(myWord);
+		int myScore = calculateScore(myWord);
 		
 		System.out.println("Your Scrabble score for \"" + 
 		myWord + "\" is " + myScore);
 	}
 
-	
 	/*
 	 * gets user input Scrabble word and returns the word
 	 */
@@ -34,9 +29,28 @@ public class main {
 		Scanner myObj = new Scanner(System.in); // Create a Scanner object
 		
 		String word = myObj.nextLine();		    // Stores user input
-
+		
+		// checks for empty input
+		while (word.isEmpty()) {
+			System.out.println("Oops! No word entered. Please try again.");
+			word = myObj.nextLine();		    
+		}
+		return word;
+	}
+	
+	/**
+	 * calculates and returns score of Scrabble-word param
+	 */
+	public static int calculateScore(String word) {
+		int score = 0;
+		boolean isDouble = false;
+		boolean isTriple = false;
+		boolean allSeven = false;
+		
 		System.out.println("Is your word a double or triple word? Enter '2' "
 				+ "for double and '3' for triple. Enter '0' for no.");
+		
+		Scanner myObj = new Scanner(System.in); // Create a Scanner object
 		
 		int bonus = myObj.nextInt();
 		
@@ -51,19 +65,9 @@ public class main {
 			isTriple = true;					// triple word bonus
 		
 		if (seven == 1)							// seven tiles bonus +50 pts
-			sevenBonus = true;
+			allSeven = true;
 		
 		myObj.close();
-		
-		return word;
-		
-	}
-	
-	/**
-	 * calculates and returns score of Scrabble-word param
-	 */
-	public static int calculate(String word) {
-		int score = 0;
 		
 		word = word.toLowerCase();
 		
@@ -121,13 +125,15 @@ public class main {
 		                 break;
 		        case 'z' :  score += 10;
 		                 break;
-		        case '*' :  score += 0;
+		        case '*' : score += 0;
 		                 break;
+		        default  : System.out.println("Error. Invalid word input.");
+		        			return score = 0;
 			}
 		}
 		
 		// adding bonuses
-		if (sevenBonus)	
+		if (allSeven)	
 			score += 50;
 		
 		if (isDouble)
